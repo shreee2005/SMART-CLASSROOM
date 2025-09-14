@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Meet Face Detector",
+  "version": "1.4",
+  "description": "Detects faces in a Google Meet screenshot.",
+  "permissions": [ "activeTab", "storage" ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Detect Faces in Screenshot" },
+  "web_accessible_resources": [
+    {
+      "resources": [ "models/*" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net;"
+  }
+}
