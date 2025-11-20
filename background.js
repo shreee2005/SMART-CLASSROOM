@@ -1,12 +1,21 @@
-chrome.action.onClicked.addListener(async (tab) => {
-  if (tab.active) {
-    try {
-      const screenshotDataUrl = await chrome.tabs.captureVisibleTab(tab.windowId, { format: 'png' });
-      chrome.storage.local.set({ capturedImage: screenshotDataUrl }, () => {
-        chrome.tabs.create({ url: 'result.html' });
-      });
-    } catch (error) {
-      console.error('Failed to capture tab:', error);
-    }
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.type === 'EMOTION_ALERT') {
+    const notificationId = `student-alert-${request.name}-${Date.now()}`;
+    const options = {
+      type: 'basic',
+      iconUrl: 'icon48.jpg',
+      title: `${request.name}: ${request.emotion}`,
+      message: request.reason,
+      requireInteraction: false
+    };
+    chrome.notifications.create(notificationId, options, (id) => {
+      if (chrome.runtime.lastError) {
+        console.error('Notification error:', chrome.runtime.lastError);
+      } else {
+        console.log(`Notification: ${request.name} - ${request.emotion}, reason: ${request.reason}`);
+      }
+    });
   }
 });
+
+console.log("Background: ready for emotion notifications.");
