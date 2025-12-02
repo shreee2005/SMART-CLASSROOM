@@ -1,0 +1,55 @@
+/* The main button style */
+.smart-class-btn {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 9999;
+  padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+/* ID for the Blue Start Button */
+#start-monitor-btn {
+  background-color: #1a73e8; /* Google Blue */
+}
+#start-monitor-btn:hover {
+  background-color: #155db1;
+}
+
+/* ID for the Green Result Button */
+#see-results-btn {
+  background-color: #1e8e3e; /* Google Green */
+}
+#see-results-btn:hover {
+  background-color: #166b2e;
+}
+
+/* The Notification Banner */
+#smart-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* Center it */
+  z-index: 10000;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-family: sans-serif;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+#smart-notification.show {
+  opacity: 1;
+}

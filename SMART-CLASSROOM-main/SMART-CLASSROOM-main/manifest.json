@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Meet Face Detector",
+  "version": "1.5",
+  "description": "Detects faces in a Google Meet session.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabCapture",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Smart Classroom Monitor"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "models/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ]
+    }
+  ]
+}

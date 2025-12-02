@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Classroom Dashboard</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    h1 { font-weight: 300; margin-bottom: 10px; }
+    
+    /* Layout for Video and Charts */
+    .dashboard-layout {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      align-items: flex-start;
+    }
+
+    #video-container {
+      position: relative;
+      width: 640px;
+      height: 480px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ✅ Only target the overlay canvas */
+    video, #canvas { 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Ensure charts behave normally */
+    #normalEmotionChart, #cognitiveEmotionChart {
+      position: relative;
+      width: 100% !important;
+      height: auto !important;
+    }
+    video { object-fit: cover; }
+
+    /* Chart Container Styling */
+    .charts-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 300px;
+    }
+
+    .chart-box {
+      border: 1px solid #eee;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      background: #fff;
+    }
+
+    h3 { margin-top: 0; font-size: 16px; color: #555; text-align: center; }
+
+    /* Report & Button Styling */
+    .controls { margin-top: 20px; text-align: center; }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    button:hover { background-color: #1557b0; }
+
+    #reportContainer {
+      text-align: left;
+      width: 960px; /* Matches video + charts width */
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .report-section { 
+      flex: 1; 
+      border: 1px solid #eee; 
+      padding: 15px; 
+      margin: 0 10px;
+      border-radius: 8px;
+    }
+    .present-list li { color: green; }
+    .absent-list li { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Smart Classroom Dashboard</h1>
+  <h2 id="status">Loading Models...</h2>
+  
+  <div class="dashboard-layout">
+    
+    <div id="video-container">
+      <video id="video" autoplay muted></video>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div style="margin: 20px 0; padding: 15px; background: #f0f8ff; border-radius: 8px;">
+    <label>Enter class names: </label>
+    <input id="nameInput" placeholder="John, Jane, Bob" style="padding: 8px; width: 250px;">
+    <button onclick="addStudentNames()" style="padding: 8px 15px; background: #36A2EB; color: white; border: none; border-radius: 5px;">Add Students</button>
+    </div>
+
+    <div class="charts-container">
+      <div class="chart-box">
+        <h3>Normal Emotions</h3>
+        <canvas id="normalEmotionChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Cognitive State</h3>
+        <canvas id="cognitiveEmotionChart"></canvas>
+        <p>Cognitive States: Concentration (Blue), Sleepy (Red), Distracted (Yellow)</p>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="controls">
+    <button id="save-btn">Save Attendance Log</button>
+    <p id="save-status"></p>
+  </div>
+  
+  <div id="reportContainer">
+    <p style="text-align: center; width: 100%;">Waiting for analysis...</p>
+  </div>
+
+  <script src="face-api.min.js"></script>
+  <script src="chart.js"></script>
+  <script src="dashboard.js"></script> 
+
+</body>
+</html>
