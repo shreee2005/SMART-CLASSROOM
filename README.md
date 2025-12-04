@@ -67,7 +67,5 @@ The system is split into four main pieces:
 
 ---
 
-## 🚀 Getting Started (Developer Setup)
 
-### 1. Clone the repo
 
