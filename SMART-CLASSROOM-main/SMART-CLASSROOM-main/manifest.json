@@ -7,19 +7,19 @@
     "activeTab",
     "storage",
     "tabCapture",
-    "scripting"
+    "scripting",
+    "system.display",
+    "background",
+    "tabs"
   ],
 
   "host_permissions": [
-    "http://localhost:3000/*",
+    "https://meet.google.com/*",
     "<all_urls>"
   ],
 
   "background": {
     "service_worker": "background.js"
-  },
-  "action": {
-    "default_title": "Smart Classroom Monitor"
   },
   "web_accessible_resources": [
     {
@@ -46,5 +46,8 @@
         "content.css"
       ]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }

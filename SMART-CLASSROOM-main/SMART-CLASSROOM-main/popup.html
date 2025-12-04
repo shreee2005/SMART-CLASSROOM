@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { width: 300px; padding: 20px; font-family: Arial; }
+    button { width: 100%; padding: 12px; margin: 8px 0; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .start-btn { background: #4CAF50; color: white; }
+    .stop-btn { background: #f44336; color: white; }
+    .status { padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0; }
+    .active { background: #d4edda; color: #155724; }
+    .inactive { background: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <h3>📊 Smart Classroom</h3>
+  <div id="status" class="status inactive">Monitoring OFF</div>
+  <button id="startBtn" class="start-btn">▶️ Start Monitoring</button>
+  <button id="stopBtn" class="stop-btn" style="display:none;">⏹️ Stop Monitoring</button>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
